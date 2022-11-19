@@ -4,19 +4,23 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String sentence = in.nextLine();
-        while (sentence.indexOf("  ") >= 0) {
-            sentence = sentence.replaceAll("  ", " ");
+        Scanner scanner = new Scanner(System.in);
+        String sentence = scanner.nextLine();
+        Set<Character> delimiters = new HashSet<Character>(
+                Arrays.asList(' ', '.', ',', ':', ';', '?', '!', '-', '(', ')', '\"'));
+        SortedSet<String> words = new TreeSet<String>();
+        String temp = "";
+        for (int i = 0; i < sentence.length(); i++) {
+            if (!delimiters.contains(sentence.charAt(i))) {
+                temp += sentence.charAt(i);
+                if (i < sentence.length() - 1) continue;
+            }
+            if (temp != "") words.add(temp);
+            temp = "";
         }
-        String[] words = sentence.split(" ");
-        SortedSet<String> ss = new TreeSet<>();
-        for (var i : words) {
-            ss.add(i);
-        }
-        while (!ss.isEmpty()) {
-            System.out.println(ss.first());
-            ss.remove(ss.first());
-        }
+        System.out.println(words);
     }
 }
+
+
+
