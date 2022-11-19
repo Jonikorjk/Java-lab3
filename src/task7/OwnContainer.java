@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class OwnContainer<E> extends AbstractList<E> {
     @SuppressWarnings("unchecked")
-    ArrayList<Object> arr = new ArrayList<>();
+    ArrayList<E> arr = new ArrayList<>();
     private int from;
     private int to;
 
@@ -17,7 +17,7 @@ public class OwnContainer<E> extends AbstractList<E> {
     @Override
     public E get(int index) {
         if (index >= from && index <= to) {
-            return (E)arr.get(index - from);
+            return arr.get(index - from);
         }
         return null;
     }
@@ -45,7 +45,7 @@ public class OwnContainer<E> extends AbstractList<E> {
     @Override
     public E set(int index, E element) {
         if (element != null && index >= from && index <= to) {
-            return (E)arr.set(index - from, element);
+            return arr.set(index - from, element);
         }
         return null;
     }
@@ -53,7 +53,7 @@ public class OwnContainer<E> extends AbstractList<E> {
     @Override
     public E remove(int index) {
         if (index >= from && index <= to) {
-            return (E)arr.remove(index - from);
+            return arr.remove(index - from);
         }
         return null;
     }
@@ -70,7 +70,7 @@ public class OwnContainer<E> extends AbstractList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return (Iterator<E>)arr.iterator();
+        return arr.iterator();
     }
 
 }
